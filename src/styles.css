@@ -1,0 +1,147 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f4f4f6;
+  --card: #ffffff;
+  --text: #1b1b20;
+  --muted: #5d5d68;
+  --line: #d9d9e0;
+  --accent: #2f6fde;
+  --accent-text: #ffffff;
+  --error: #c0362c;
+  --ok: #1f7a43;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121216;
+    --card: #1c1c22;
+    --text: #ececf1;
+    --muted: #a3a3ae;
+    --line: #33333d;
+    --accent: #5b8ff0;
+    --accent-text: #0e0e12;
+    --error: #f07167;
+    --ok: #5cc98a;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 32px 16px;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+main {
+  max-width: 520px;
+  margin: 0 auto;
+}
+h1 {
+  margin: 0 0 4px;
+  font-size: 24px;
+}
+.lead {
+  margin: 0 0 24px;
+  color: var(--muted);
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+}
+.drop {
+  display: block;
+  border: 2px dashed var(--line);
+  border-radius: 10px;
+  padding: 28px 16px;
+  text-align: center;
+  cursor: pointer;
+}
+.drop.over {
+  border-color: var(--accent);
+}
+.drop input {
+  display: none;
+}
+.drop strong {
+  color: var(--accent);
+}
+.file-name {
+  margin: 16px 0 0;
+  color: var(--muted);
+  word-break: break-all;
+}
+.profile {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.profile h2 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  word-break: break-all;
+}
+.profile .now {
+  margin: 0;
+  color: var(--muted);
+}
+.profile label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: 600;
+}
+input[type="number"] {
+  width: 100%;
+  padding: 10px 12px;
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+button {
+  font: inherit;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.quick button {
+  padding: 6px 12px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+.save {
+  width: 100%;
+  margin-top: 24px;
+  padding: 12px;
+  font-weight: 600;
+  background: var(--accent);
+  color: var(--accent-text);
+  border: 0;
+}
+.message {
+  min-height: 24px;
+  margin: 16px 0 0;
+}
+.message.error {
+  color: var(--error);
+}
+.message.ok {
+  color: var(--ok);
+}
+.hidden {
+  display: none;
+}
+footer {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--muted);
+}

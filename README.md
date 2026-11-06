@@ -61,7 +61,7 @@ The tool finds every profile in the zip, changes those 4 bytes, and updates the 
 
 ## For developers
 
-The backup logic is in `save.js`, and the page is `index.html`. There are no dependencies.
+The page is `index.html`. The code is in `src/`: `backup.js` reads and changes the backup, `app.js` runs the page, and `styles.css` has the styles. There are no dependencies.
 
 Run the tests with Node.js 20 or newer:
 

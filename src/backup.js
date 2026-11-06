@@ -151,6 +151,6 @@
   if (typeof module !== "undefined" && module.exports) {
     module.exports = api;
   } else {
-    root.Nfsu2Save = api;
+    root.Nfsu2Backup = api;
   }
 })(typeof globalThis !== "undefined" ? globalThis : this);

@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { CASH_OFFSET, MAX_CASH, crc32, readBackup, writeBackup } = require("../save.js");
+const { CASH_OFFSET, MAX_CASH, crc32, readBackup, writeBackup } = require("../src/backup.js");
 
 function fakeProfile(cash) {
   const bytes = new Uint8Array(54966);
