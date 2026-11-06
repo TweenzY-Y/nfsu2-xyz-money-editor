@@ -193,6 +193,35 @@ details img {
   margin-top: 4px;
 }
 
+.top-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px 24px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.links .btn {
+  text-decoration: none;
+}
+
+footer p {
+  margin: 0 0 8px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 12px;
+}
+
 .panel {
   padding: 24px;
   background: var(--panel);
