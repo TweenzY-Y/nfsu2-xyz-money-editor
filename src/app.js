@@ -87,7 +87,7 @@ el("save").addEventListener("click", () => {
     setTimeout(() => URL.revokeObjectURL(url), 1000);
     bytes = result;
     showProfiles(readBackup(result));
-    showMessage("Done. Now go to the Saves tab on nfsu2.xyz and click Restore.", "ok");
+    showMessage("Done. Now restore the new backup on nfsu2.xyz (step 4 in How to use it).", "ok");
   } catch (err) {
     showMessage(err.message, "error");
   }

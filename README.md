@@ -30,7 +30,9 @@ You do not need to unzip it.
 2. Unzip the file you downloaded.
 3. Open the unzipped folder and double-click `index.html`. It opens in your browser. Chrome and Firefox both work.
 
-Keep `index.html` and the `src` folder together. The tool does not work if you move `index.html` out of the folder alone.
+Keep `index.html` together with the `src` and `docs` folders. The tool does not work if you move `index.html` out of the folder alone.
+
+The page also has short steps under **How to use it**, so you can follow them there.
 
 ### 4. Change the money
 

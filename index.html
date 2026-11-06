@@ -13,11 +13,12 @@
         <p class="hint">Fan tool for <a href="https://nfsu2.xyz">nfsu2.xyz</a>. Not made by the nfsu2.xyz team.</p>
       </header>
 
-      <section class="panel">
+      <section class="panel tool">
         <h2>Change your money</h2>
         <p class="hint intro">
           Open your save backup from nfsu2.xyz, set the money and download a new backup. This tool is made only
           for nfsu2.xyz and does not work with other versions of the game.
+          <a href="#how-to" class="how-link">First time here? Read how to use it.</a>
         </p>
 
         <label class="drop" id="drop">
@@ -35,6 +36,70 @@
         </div>
 
         <p class="message" id="message" role="status"></p>
+      </section>
+
+      <section class="panel steps" id="how-to">
+        <h2>How to use it</h2>
+        <ol>
+          <li>
+            <h3>Save your game</h3>
+            <p>
+              In the game, press <kbd>Esc</kbd> or <kbd>Start</kbd> and go to <b>Garage &gt; Save</b>. Then close
+              the game to get back to the nfsu2.xyz page.
+            </p>
+          </li>
+          <li>
+            <h3>Download a backup</h3>
+            <p>
+              On <a href="https://nfsu2.xyz">nfsu2.xyz</a>, open the <b>Saves</b> tab. Under <b>Profiles</b>, click
+              <b>Download backup</b>. Keep this file. It is your copy of the old save.
+            </p>
+            <details>
+              <summary>Show picture</summary>
+              <img
+                src="docs/screenshots/01-download-backup.png"
+                alt="The Saves tab on nfsu2.xyz with the Download backup button"
+                loading="lazy"
+              />
+            </details>
+          </li>
+          <li>
+            <h3>Change the money</h3>
+            <p>
+              Choose the backup in the box on this page. Set the new money and click <b>Download new backup</b>.
+              You get a new file with <code>-money</code> at the end of the name.
+            </p>
+          </li>
+          <li>
+            <h3>Restore the new backup</h3>
+            <p>
+              On nfsu2.xyz, open the <b>Saves</b> tab and click <b>Restore</b>. Choose the <code>-money.zip</code>
+              file, then click <b>Restore backup</b>.
+            </p>
+            <p class="note">
+              The window says your profile "was edited with a save editor". This is normal for every backup this
+              tool changes. Changed values can crash the game or break the career, so keep the money at a sensible
+              amount.
+            </p>
+            <details>
+              <summary>Show picture</summary>
+              <img
+                src="docs/screenshots/04-restore-dialog.png"
+                alt="The Restore this backup? window on nfsu2.xyz"
+                loading="lazy"
+              />
+            </details>
+          </li>
+          <li>
+            <h3>Play</h3>
+            <p>Press <b>Play</b> and load your profile. You should see the new money.</p>
+          </li>
+        </ol>
+        <p class="hint">
+          Something went wrong? On the <b>Saves</b> tab, click <b>Restore</b> and choose your old backup from step
+          2. If you use cloud saves, click <b>Sync now</b> after the restore and choose
+          <b>Keep this browser's</b> if nfsu2.xyz asks which saves to keep.
+        </p>
       </section>
 
       <footer class="hint">
