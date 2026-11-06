@@ -40,7 +40,7 @@ You only need a browser and [Node.js](https://nodejs.org) 20 or newer. The proje
 ## Rules for changes
 
 - Keep the tool small and without dependencies. It must keep working when someone double-clicks `index.html`.
-- Add or update tests when you change `src/backup.js`, and make sure `npm test` passes.
+- Add or update tests when you change `src/backup.js`, and make sure `npm test` passes. GitHub also runs the tests for every pull request.
 - Test your change in the browser with a real backup from nfsu2.xyz, and check that nfsu2.xyz can restore the new backup.
 - Never commit a real save backup.
 - Write text for players in simple English (level B1 to B2). Use short sentences and plain words.
