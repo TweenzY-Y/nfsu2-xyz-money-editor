@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>nfsu2.xyz Money Editor</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f4f4f6;
+        --card: #ffffff;
+        --text: #1b1b20;
+        --muted: #5d5d68;
+        --line: #d9d9e0;
+        --accent: #2f6fde;
+        --accent-text: #ffffff;
+        --error: #c0362c;
+        --ok: #1f7a43;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #121216;
+          --card: #1c1c22;
+          --text: #ececf1;
+          --muted: #a3a3ae;
+          --line: #33333d;
+          --accent: #5b8ff0;
+          --accent-text: #0e0e12;
+          --error: #f07167;
+          --ok: #5cc98a;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 32px 16px;
+        background: var(--bg);
+        color: var(--text);
+        font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      main {
+        max-width: 520px;
+        margin: 0 auto;
+      }
+      h1 {
+        margin: 0 0 4px;
+        font-size: 24px;
+      }
+      .lead {
+        margin: 0 0 24px;
+        color: var(--muted);
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 20px;
+      }
+      .drop {
+        display: block;
+        border: 2px dashed var(--line);
+        border-radius: 10px;
+        padding: 28px 16px;
+        text-align: center;
+        cursor: pointer;
+      }
+      .drop.over {
+        border-color: var(--accent);
+      }
+      .drop input {
+        display: none;
+      }
+      .drop strong {
+        color: var(--accent);
+      }
+      .file-name {
+        margin: 16px 0 0;
+        color: var(--muted);
+        word-break: break-all;
+      }
+      .profile {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+      }
+      .profile h2 {
+        margin: 0 0 4px;
+        font-size: 18px;
+        word-break: break-all;
+      }
+      .profile .now {
+        margin: 0;
+        color: var(--muted);
+      }
+      .profile label {
+        display: block;
+        margin: 12px 0 6px;
+        font-weight: 600;
+      }
+      input[type="number"] {
+        width: 100%;
+        padding: 10px 12px;
+        font: inherit;
+        color: var(--text);
+        background: var(--bg);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+      .quick {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      button {
+        font: inherit;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .quick button {
+        padding: 6px 12px;
+        background: transparent;
+        color: var(--text);
+        border: 1px solid var(--line);
+      }
+      .save {
+        width: 100%;
+        margin-top: 24px;
+        padding: 12px;
+        font-weight: 600;
+        background: var(--accent);
+        color: var(--accent-text);
+        border: 0;
+      }
+      .message {
+        min-height: 24px;
+        margin: 16px 0 0;
+      }
+      .message.error {
+        color: var(--error);
+      }
+      .message.ok {
+        color: var(--ok);
+      }
+      .hidden {
+        display: none;
+      }
+      footer {
+        margin-top: 20px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>nfsu2.xyz Money Editor</h1>
+      <p class="lead">
+        Change the money in your save backup from <a href="https://nfsu2.xyz">nfsu2.xyz</a>. This tool is made
+        only for nfsu2.xyz and does not work with other versions of the game.
+      </p>
+
+      <div class="card">
+        <label class="drop" id="drop">
+          <input type="file" id="file" accept=".zip,application/zip" />
+          <strong>Choose your nfsu2.xyz backup</strong> or drop it here.<br />
+          It is the <code>nfsu2-saves-….zip</code> file from the Saves tab on nfsu2.xyz.
+        </label>
+
+        <div id="editor" class="hidden">
+          <p class="file-name" id="name"></p>
+          <div id="profiles"></div>
+          <button type="button" class="save" id="save">Download new backup</button>
+        </div>
+
+        <p class="message" id="message" role="status"></p>
+      </div>
+
+      <footer>
+        Everything happens in your browser. Your file is not sent anywhere. Keep your old backup until you
+        know the new one works.
+      </footer>
+    </main>
+
+    <template id="profile-template">
+      <section class="profile">
+        <h2></h2>
+        <p class="now"></p>
+        <label>New money</label>
+        <input type="number" min="0" step="1" inputmode="numeric" />
+        <div class="quick">
+          <button type="button" data-add="100000">+100,000</button>
+          <button type="button" data-add="1000000">+1,000,000</button>
+          <button type="button" data-add="9000000">+9,000,000</button>
+        </div>
+      </section>
+    </template>
+
+    <script src="save.js"></script>
+    <script>
+      const { readBackup, writeBackup, MAX_CASH } = window.Nfsu2Save;
+      const el = (id) => document.getElementById(id);
+      const format = (n) => "$" + n.toLocaleString("en-US");
+
+      let bytes = null;
+      let fileName = "";
+      let inputs = [];
+
+      function showMessage(text, kind) {
+        el("message").textContent = text;
+        el("message").className = "message" + (kind ? " " + kind : "");
+      }
+
+      function showProfiles(profiles) {
+        const list = el("profiles");
+        list.replaceChildren();
+        inputs = profiles.map((profile, index) => {
+          const node = el("profile-template").content.cloneNode(true);
+          const input = node.querySelector("input");
+          const id = "money-" + index;
+          node.querySelector("h2").textContent = profile.name;
+          node.querySelector(".now").textContent = "Money now: " + format(profile.cash);
+          node.querySelector("label").htmlFor = id;
+          input.id = id;
+          input.max = MAX_CASH;
+          input.value = profile.cash;
+          node.querySelectorAll("[data-add]").forEach((button) => {
+            button.addEventListener("click", () => {
+              const now = Number(input.value) || 0;
+              input.value = Math.min(now + Number(button.dataset.add), MAX_CASH);
+            });
+          });
+          list.appendChild(node);
+          return { path: profile.path, input };
+        });
+      }
+
+      async function openFile(file) {
+        if (!file) {
+          return;
+        }
+        try {
+          const data = new Uint8Array(await file.arrayBuffer());
+          const profiles = readBackup(data);
+          bytes = data;
+          fileName = file.name;
+          el("name").textContent = file.name;
+          showProfiles(profiles);
+          el("editor").classList.remove("hidden");
+          showMessage("");
+        } catch (err) {
+          bytes = null;
+          el("editor").classList.add("hidden");
+          showMessage(err.message, "error");
+        }
+      }
+
+      el("file").addEventListener("change", (e) => openFile(e.target.files[0]));
+
+      const drop = el("drop");
+      drop.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        drop.classList.add("over");
+      });
+      drop.addEventListener("dragleave", () => drop.classList.remove("over"));
+      drop.addEventListener("drop", (e) => {
+        e.preventDefault();
+        drop.classList.remove("over");
+        openFile(e.dataTransfer.files[0]);
+      });
+
+      el("save").addEventListener("click", () => {
+        if (!bytes) {
+          return;
+        }
+        try {
+          const changes = {};
+          for (const { path, input } of inputs) {
+            changes[path] = Number(input.value);
+          }
+          const result = writeBackup(bytes, changes);
+          const url = URL.createObjectURL(new Blob([result], { type: "application/zip" }));
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = fileName.replace(/\.zip$/i, "") + "-money.zip";
+          link.click();
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+          bytes = result;
+          showProfiles(readBackup(result));
+          showMessage("Done. Now go to the Saves tab on nfsu2.xyz and click Restore.", "ok");
+        } catch (err) {
+          showMessage(err.message, "error");
+        }
+      });
+    </script>
+  </body>
+</html>
