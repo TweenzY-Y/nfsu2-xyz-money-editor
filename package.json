@@ -1,0 +1,9 @@
+{
+  "name": "nfsu2-xyz-money-editor",
+  "version": "1.0.0",
+  "description": "Change the money in a save backup from nfsu2.xyz.",
+  "private": true,
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  }
+}
