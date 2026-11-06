@@ -6,6 +6,8 @@ The tool is made only for nfsu2.xyz. It does not work with the original PC game 
 
 The tool runs in your browser. You do not need to install anything, and your file is not sent anywhere.
 
+**Open the tool: [nfsu2-money-editor.vercel.app](https://nfsu2-money-editor.vercel.app)**
+
 ## How to use it
 
 ### 1. Save your game and close it
@@ -24,15 +26,17 @@ You get a file called something like `nfsu2-saves-2026-11-06_115219.zip`. Keep t
 
 You do not need to unzip it.
 
-### 3. Get the tool
+### 3. Open the tool
+
+Open [nfsu2-money-editor.vercel.app](https://nfsu2-money-editor.vercel.app) in Chrome or Firefox. The page also has these steps under **How to use it**, so you can follow them there.
+
+You can also use the tool without internet:
 
 1. At the top of this page on GitHub, click the green **Code** button and then **Download ZIP**.
 2. Unzip the file you downloaded.
-3. Open the unzipped folder and double-click `index.html`. It opens in your browser. Chrome and Firefox both work.
+3. Open the unzipped folder and double-click `index.html`.
 
 Keep `index.html` together with the `src` and `docs` folders. The tool does not work if you move `index.html` out of the folder alone.
-
-The page also has short steps under **How to use it**, so you can follow them there.
 
 ### 4. Change the money
 
