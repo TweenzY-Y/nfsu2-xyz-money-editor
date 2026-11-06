@@ -1,5 +1,12 @@
 # nfsu2.xyz Money Editor
 
+[![Open the tool](https://img.shields.io/website?url=https%3A%2F%2Fnfsu2-money-editor.vercel.app&label=open%20the%20tool&up_message=online&up_color=c8f088&labelColor=262626)](https://nfsu2-money-editor.vercel.app)
+[![Tests](https://github.com/TweenzY-Y/nfsu2-xyz-money-editor/actions/workflows/test.yml/badge.svg)](https://github.com/TweenzY-Y/nfsu2-xyz-money-editor/actions/workflows/test.yml)
+[![License: MIT](https://img.shields.io/github/license/TweenzY-Y/nfsu2-xyz-money-editor?color=c8f088&labelColor=262626)](LICENSE)
+[![Dependencies: none](https://img.shields.io/badge/dependencies-none-c8f088?labelColor=262626)](package.json)
+[![Made for nfsu2.xyz](https://img.shields.io/badge/made%20for-nfsu2.xyz-c8f088?labelColor=262626)](https://nfsu2.xyz)
+[![Last commit](https://img.shields.io/github/last-commit/TweenzY-Y/nfsu2-xyz-money-editor?color=c8f088&labelColor=262626)](https://github.com/TweenzY-Y/nfsu2-xyz-money-editor/commits/main)
+
 A small tool to change the money in your [nfsu2.xyz](https://nfsu2.xyz) save. nfsu2.xyz lets you play Need for Speed: Underground 2 in the browser. This tool opens the backup file you download from nfsu2.xyz, changes the money, and gives you a new backup to restore on nfsu2.xyz.
 
 The tool is made only for nfsu2.xyz. It does not work with the original PC game or with console versions. It is a fan tool and is not made by the nfsu2.xyz team.
