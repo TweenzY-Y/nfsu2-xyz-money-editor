@@ -18,7 +18,7 @@ function showProfiles(profiles) {
     const node = el("profile-template").content.cloneNode(true);
     const input = node.querySelector("input");
     const id = "money-" + index;
-    node.querySelector("h2").textContent = profile.name;
+    node.querySelector("h3").textContent = profile.name;
     node.querySelector(".now").textContent = "Money now: " + format(profile.cash);
     node.querySelector("label").htmlFor = id;
     input.id = id;

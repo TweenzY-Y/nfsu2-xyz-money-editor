@@ -7,45 +7,54 @@
     <link rel="stylesheet" href="src/styles.css" />
   </head>
   <body>
-    <main>
-      <h1>nfsu2.xyz Money Editor</h1>
-      <p class="lead">
-        Change the money in your save backup from <a href="https://nfsu2.xyz">nfsu2.xyz</a>. This tool is made
-        only for nfsu2.xyz and does not work with other versions of the game.
-      </p>
+    <main class="app">
+      <header class="top">
+        <h1>nfsu2.xyz Money Editor</h1>
+        <p class="hint">Fan tool for <a href="https://nfsu2.xyz">nfsu2.xyz</a>. Not made by the nfsu2.xyz team.</p>
+      </header>
 
-      <div class="card">
+      <section class="panel">
+        <h2>Change your money</h2>
+        <p class="hint intro">
+          Open your save backup from nfsu2.xyz, set the money and download a new backup. This tool is made only
+          for nfsu2.xyz and does not work with other versions of the game.
+        </p>
+
         <label class="drop" id="drop">
           <input type="file" id="file" accept=".zip,application/zip" />
-          <strong>Choose your nfsu2.xyz backup</strong> or drop it here.<br />
-          It is the <code>nfsu2-saves-….zip</code> file from the Saves tab on nfsu2.xyz.
+          <span class="btn">Choose your nfsu2.xyz backup</span>
+          <span class="hint">
+            or drop it here. It is the <code>nfsu2-saves-….zip</code> file from the Saves tab on nfsu2.xyz.
+          </span>
         </label>
 
         <div id="editor" class="hidden">
           <p class="file-name" id="name"></p>
           <div id="profiles"></div>
-          <button type="button" class="save" id="save">Download new backup</button>
+          <button type="button" class="play" id="save">Download new backup</button>
         </div>
 
         <p class="message" id="message" role="status"></p>
-      </div>
+      </section>
 
-      <footer>
-        Everything happens in your browser. Your file is not sent anywhere. Keep your old backup until you
-        know the new one works.
+      <footer class="hint">
+        Everything happens in your browser. Your file is not sent anywhere. Keep your old backup until you know
+        the new one works.
       </footer>
     </main>
 
     <template id="profile-template">
       <section class="profile">
-        <h2></h2>
-        <p class="now"></p>
+        <div class="profile-head">
+          <h3></h3>
+          <span class="now"></span>
+        </div>
         <label>New money</label>
         <input type="number" min="0" step="1" inputmode="numeric" />
         <div class="quick">
-          <button type="button" data-add="100000">+100,000</button>
-          <button type="button" data-add="1000000">+1,000,000</button>
-          <button type="button" data-add="9000000">+9,000,000</button>
+          <button type="button" class="btn small" data-add="100000">+100,000</button>
+          <button type="button" class="btn small" data-add="1000000">+1,000,000</button>
+          <button type="button" class="btn small" data-add="9000000">+9,000,000</button>
         </div>
       </section>
     </template>
