@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Problems with the game or with nfsu2.xyz
+    url: https://nfsu2.xyz
+    about: This tool only changes the money in your backup. Please report problems with the game to nfsu2.xyz.
+  - name: Security problem
+    url: https://github.com/TweenzY-Y/nfsu2-xyz-money-editor/security/advisories/new
+    about: Please report security problems privately, not in a public issue.

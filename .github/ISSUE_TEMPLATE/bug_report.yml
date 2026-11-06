@@ -1,0 +1,59 @@
+name: Bug report
+description: Something in the money editor does not work.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug. Please do not attach your save backup here. It has your profile in it.
+
+        Problems with the game itself or with nfsu2.xyz are not bugs in this tool. Please report those to nfsu2.xyz.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Tell us what you did and what went wrong. Copy any error message from the page.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+  - type: dropdown
+    id: step
+    attributes:
+      label: At which step did it go wrong?
+      options:
+        - Opening the backup in the tool
+        - Changing the money
+        - Downloading the new backup
+        - Restoring the new backup on nfsu2.xyz
+        - Playing the game after the restore
+        - Something else
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      options:
+        - Chrome
+        - Firefox
+        - Edge
+        - Safari
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: money
+    attributes:
+      label: Money amount
+      description: Which amount did you set?
+      placeholder: "9000050"
+  - type: textarea
+    id: more
+    attributes:
+      label: Anything else?
+      description: Screenshots or other details that can help.

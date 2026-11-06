@@ -95,3 +95,11 @@ Run the tests with Node.js 20 or newer:
 ```
 npm test
 ```
+
+## Contributing
+
+Bug reports, ideas and pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) first. Please follow the [code of conduct](CODE_OF_CONDUCT.md). To report a security problem, see [SECURITY.md](SECURITY.md).
+
+## License
+
+[MIT](LICENSE)
