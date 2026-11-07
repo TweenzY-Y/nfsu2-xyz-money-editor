@@ -97,6 +97,8 @@ A backup from nfsu2.xyz is a zip file. Each profile is in it as `NFS Underground
 
 The tool finds every profile in the zip, changes those 4 bytes, and updates the zip checksum for that file. It does not change anything else, so the new zip is the same size as the old one.
 
+Magazine covers and DVDs you made in the game are in the zip too. Each one has its own folder and starts with the same `20CM` header as a profile. The tool only reads a file as a profile when its folder also has a `GARAGE.DAT`, and leaves the rest alone.
+
 ## For developers
 
 The page is `index.html`. The code is in `src/`: `backup.js` reads and changes the backup, `app.js` runs the page, and `styles.css` has the styles. The README screenshots are in `docs/screenshots/`. There are no dependencies.

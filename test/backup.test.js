@@ -153,3 +153,15 @@ test("rejects money that is not allowed", () => {
   }
   assert.equal(readBackup(writeBackup(backup, { [PATH]: MAX_CASH }))[0].cash, MAX_CASH);
 });
+
+test("skips magazines and DVDs made in the game", () => {
+  const backup = fakeBackup({
+    "NFS Underground 2/Rack DVD 1/Rack DVD 1": fakeProfile(589758246),
+    "NFS Underground 2/Rack Magazine 1/Rack Magazine 1": fakeProfile(2561212193),
+    "NFS Underground 2/Rack/GARAGE.DAT": new Uint8Array(10202),
+    [PATH]: fakeProfile(50),
+  });
+  const profiles = readBackup(backup);
+  assert.deepEqual(profiles.map((p) => p.path), [PATH]);
+  assert.equal(readBackup(writeBackup(backup, { [PATH]: 1000 }))[0].cash, 1000);
+});

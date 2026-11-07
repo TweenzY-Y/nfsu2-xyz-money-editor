@@ -38,6 +38,10 @@
     return new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
   }
 
+  function folderOf(path) {
+    return path.slice(0, path.lastIndexOf("/") + 1);
+  }
+
   function isProfile(bytes, start, length) {
     if (length < CASH_OFFSET + 4) {
       return false;
@@ -73,7 +77,8 @@
     const count = dv.getUint16(end + 10, true);
     let pos = dv.getUint32(end + 16, true);
     const decoder = new TextDecoder();
-    const profiles = [];
+    const candidates = [];
+    const garages = new Set();
 
     for (let i = 0; i < count; i++) {
       if (dv.getUint32(pos, true) !== CENTRAL_HEADER) {
@@ -94,9 +99,12 @@
       const dataStart =
         localOffset + 30 + dv.getUint16(localOffset + 26, true) + dv.getUint16(localOffset + 28, true);
 
+      if (/(^|\/)GARAGE\.DAT$/i.test(path)) {
+        garages.add(folderOf(path));
+      }
       if (method === 0 && isProfile(bytes, dataStart, size)) {
         const parts = path.split("/");
-        profiles.push({
+        candidates.push({
           name: parts[parts.length - 1],
           path,
           cash: dv.getUint32(dataStart + CASH_OFFSET, true),
@@ -110,6 +118,10 @@
 
       pos += 46 + nameLength + extraLength + commentLength;
     }
+
+    // Magazine covers and DVDs made in the game get their own folders and start
+    // with the same "20CM" header. Only a profile folder has a GARAGE.DAT.
+    const profiles = candidates.filter((file) => garages.has(folderOf(file.path)));
 
     if (profiles.length === 0) {
       throw new Error(
